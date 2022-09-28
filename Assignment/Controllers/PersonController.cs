@@ -72,6 +72,15 @@ namespace Assignment.Controllers
                 //Fetching the persons Data object and assinging result to property
                 List<Person> persons = _dataAccess.GetAllPerson();
 
+                //Checking if records exist in persons to handle respective response
+                if (persons.Count() < 1)
+                {
+                    return new JsonResult("No data uploaded yet.")
+                    {
+                        StatusCode = (int)HttpStatusCode.OK
+                    };
+                }
+
                 foreach (var person in Persons)
                 {
 
